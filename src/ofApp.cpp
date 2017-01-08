@@ -9,7 +9,6 @@ void ofApp::setup(){
     _center.x = _winWidth/2;
     _center.y = ofGetWindowHeight()/2;
 
-    _img.allocate(ofGetWidth(),ofGetHeight(),OF_IMAGE_COLOR_ALPHA);
     _fboDynamic.allocate(ofGetWidth(),ofGetHeight(),GL_RGBA);
 
 

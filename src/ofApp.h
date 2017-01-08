@@ -31,7 +31,6 @@ public:
 private:
     float _winWidth;
     ofPoint _center;
-    ofImage _img;
     ofFbo   _fboDynamic;
 
     float _innerCircleRadius;
