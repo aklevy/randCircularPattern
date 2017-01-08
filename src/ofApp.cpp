@@ -10,7 +10,6 @@ void ofApp::setup(){
     _center.y = ofGetWindowHeight()/2;
 
     _img.allocate(ofGetWidth(),ofGetHeight(),OF_IMAGE_COLOR_ALPHA);
-    _fboStatic.allocate(ofGetWidth(),ofGetHeight(),GL_RGBA);
     _fboDynamic.allocate(ofGetWidth(),ofGetHeight(),GL_RGBA);
 
 
@@ -25,70 +24,7 @@ void ofApp::setup(){
     _backgroundColor = ofColor(ofRandom(0.,255.),ofRandom(0.,255.),ofRandom(0.,255.));
     _circleColor = ofColor(ofRandom(0.,255.),ofRandom(0.,255.),ofRandom(0.,255.));
 
-    drawStaticImage();
     drawDynamicImage();
-}
-//--------------------------------------------------------------
-
-void ofApp::drawStaticImage() {
-    // update background image containing gradient
-    float w = ofGetWidth();
-    float h = ofGetHeight();
-
-    // ofBackground(205, 175, 149);
-    _backgroundColor.set(ofRandom(0.,255.),ofRandom(0.,255.),ofRandom(0.,255.));
-    _circleColor.set(ofRandom(0.,255.),ofRandom(0.,255.),ofRandom(0.,255.));
-
-    ofColor res = _circleColor;
-    float dist = 0.;
-    float ratio = 0.;
-
-    for (float y=0; y<h; y++) {
-        for (float x=0; x<w; x++) {
-            dist = ofDist(x,y,_center.x,_center.y);
-            //
-            if( dist > _outerCircleRadius
-                    && dist < _outerCircleRadius + _distFromCircle)
-            {
-                ratio = ofMap(dist,_outerCircleRadius,_outerCircleRadius +_distFromCircle, 0,1.,true);
-                res.lerp(_backgroundColor,ratio);
-                _img.setColor(x,y,res);
-                res = _circleColor;
-            }
-            else if( dist < _innerCircleRadius
-                     && dist > _distFromCircle)
-            {
-                ratio = ofMap(dist,_distFromCircle,_innerCircleRadius, 0,1.,true);
-                res.lerp(_backgroundColor,1.-ratio);
-                _img.setColor(x,y,res);
-                res = _circleColor;
-            }
-            else
-            {
-                _img.setColor(x,y,ofColor(0,0,0,0));
-            }
-        }
-    }
-
-    _img.update();
-
-    _fboStatic.begin();
-
-    ofBackground(_backgroundColor);
-
-    _img.draw(0,0);
-
-    ofNoFill();
-    ofSetLineWidth(1.0);
-    ofSetColor(255,239,213);
-
-    // inner circle
-    ofDrawCircle(_center,_innerCircleRadius);
-
-    // outer circle
-    ofDrawCircle(_center,_outerCircleRadius);
-
-    _fboStatic.end();
 }
 
 //--------------------------------------------------------------
@@ -140,7 +76,9 @@ void ofApp::update(){
 
     if(_bChangeColor)
     {
-        drawStaticImage();
+        _backgroundColor.set(ofRandom(0.,255.),ofRandom(0.,255.),ofRandom(0.,255.));
+        _circleColor.set(ofRandom(0.,255.),ofRandom(0.,255.),ofRandom(0.,255.));
+
         _bChangeColor = false;
         //_bOverlap = !_bOverlap;
     }
@@ -159,7 +97,6 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackground(205, 175, 149);
-    _fboStatic.draw(0,0);
     _fboDynamic.draw(0,0);
 }
 //--------------------------------------------------------------
