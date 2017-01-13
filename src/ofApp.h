@@ -2,7 +2,10 @@
 
 #include "ofMain.h"
 
-struct circle{
+enum shapeType{SHAPE_TRIANGLE,SHAPE_CIRCLE,SHAPE_RECTANGLE};
+
+struct shape{
+    enum shapeType _shapeType;
     float _radius;
     float _rotationSpeed;
 };
@@ -14,6 +17,10 @@ public:
 
     void update();
     void updateCircles();
+    void drawShape(shapeType t, int x, int y, float radius);
+    void drawTriangle(int x, int y, float radius);
+
+    void drawCircle(int x, int y, float radius);
     void draw();
 
     void keyPressed(int key);
@@ -29,9 +36,13 @@ public:
     void gotMessage(ofMessage msg);
 
 private:
+    ofImage _texImage;
     float _winWidth;
     ofPoint _center;
     ofFbo   _fboDynamic;
+
+    ofColor     _backgroundColor;
+    ofColor     _shapeColor;
 
     float _innerCircleRadius;
     float _outerCircleRadius;
@@ -42,10 +53,16 @@ private:
     int _layerNb;
 
     float _prevRotateOffset= 0;
-    std::vector<circle> _vecCircles;
+    std::vector<shape> _vecCircles;
 
     bool    _bChangeColor = false;
+    bool    _bDrawSeparation = false;
+
     bool    _bOverlap = true;
-    ofColor     _backgroundColor;
-    ofColor     _circleColor;
+    bool    _bStopRotation = false;
+    bool    _bStopGenerating = false;
+
+    int     _countImg = 0;
+
+
 };
