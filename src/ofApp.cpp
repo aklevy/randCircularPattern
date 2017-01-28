@@ -72,59 +72,13 @@ void ofApp::drawTriangle( int x, int y, float radius){
 //--------------------------------------------------------------
 
 void ofApp::drawCircle( int x, int y, float radius){
-    /* ofBeginShape();
-    int resolution = 22;
-    float angle = 0;
+    ofNoFill();
+    ofSetLineWidth(_lineWidth);
+    ofDrawCircle(x,y,radius);
 
-    for( int i=0; i<resolution; i++ ){
-        angle = i*2*PI/resolution;
-        ofVertex(x + radius*sin(angle), y + radius*cos(angle));
-    }
-
-    ofNextContour(true);
-    int rad2 = radius - _lineWidth;
-
-    for( int i=0; i<resolution; i++ ){
-        angle = i*2*PI/resolution;
-        ofVertex(x + rad2*sin(angle), y + rad2*cos(angle));
-    }
-
-    ofEndShape(true);
-    */
-    int resolution = 22;
-    glLineWidth(5);//_lineWidth);
-    glBegin(GL_LINE_LOOP);
-    for(int ii = 0; ii < resolution; ii++)
-    {
-        float theta = 2.0f * 3.1415926f * float(ii) / float(resolution);//get the current angle
-
-        float xx = x +radius * cos(theta);//calculate the x component
-        float yy = y + radius * sin(theta);//calculate the y component
-
-        glVertex2f((int)xx, (int)yy);//output vertex
-
-    }
-
-    glEnd();
-
-
-    // filled inner circle
     float innerFilledCircleRadius = radius * 0.3;
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f((int)x, (int)y);//output vertex
-
-    for(int ii = 0; ii <= resolution; ii++)
-    {
-        float theta = 2.0f * 3.1415926f * float(ii) / float(resolution);//get the current angle
-
-        float xx = x +innerFilledCircleRadius * cos(theta);//calculate the x component
-        float yy = y + innerFilledCircleRadius * sin(theta);//calculate the y component
-
-        glVertex2f((int)xx, (int)yy);//output vertex
-
-    }
-
-    glEnd();
+    ofFill();
+    ofDrawCircle(x,y,innerFilledCircleRadius);
 
 }
 //--------------------------------------------------------------
