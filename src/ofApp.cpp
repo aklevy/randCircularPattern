@@ -14,7 +14,7 @@ void ofApp::setup(){
     _center.x = _winWidth/2;
     _center.y = ofGetWindowHeight()/2;
 
-     _fboDynamic.allocate(ofGetWidth(),ofGetHeight(),GL_RGBA,4);
+    _fboDynamic.allocate(ofGetWidth(),ofGetHeight(),GL_RGBA,4);
 
 
     _innerCircleRadius = 100;
@@ -48,7 +48,7 @@ void ofApp::drawTriangle( int x, int y, float radius){
     float brightness = _shapeColor.getBrightness();
     ofColor darkerShapeColor = _shapeColor;
     darkerShapeColor.setBrightness(brightness*0.5);
-   // darkerShapeColor = ofColor::aliceBlue;
+    // darkerShapeColor = ofColor::aliceBlue;
 
     ofSetColor(darkerShapeColor);
 
@@ -121,7 +121,7 @@ void ofApp::drawDynamicImage() {
     }
 
 
-     _fboDynamic.end();
+    _fboDynamic.end();
 }
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -142,8 +142,8 @@ void ofApp::update(){
 
         _lineWidth = ofRandom(3.0,7.);
 
-       if(!_bStopGenerating)
-           updateCircles();
+        if(!_bStopGenerating)
+            updateCircles();
     }
     drawDynamicImage();
     if(!_bStopRotation)_rotateOffset += 0.01;
@@ -154,7 +154,7 @@ void ofApp::draw(){
     _fboDynamic.draw(0,0);
     // ofNoFill();
     // ofDrawCircle(_center,100);
-  /*  ofBackground(0);
+    /*  ofBackground(0);
     ofSetColor(255);
     float x = _center.x;
     float y = _center.y;
@@ -258,8 +258,8 @@ void ofApp::keyPressed(int key){
     else if(key == 's')
     {
         // save screen to image
-        ofPixels p;
-        _fboDynamic.readToPixels(p);
+        ofImage img;
+        img.grabScreen(0, 0 , ofGetWidth(), ofGetHeight());
 
         // check if an image with the same exists or not
         // if it exists, change name until a new file can be created without overwriting an old img
@@ -272,7 +272,8 @@ void ofApp::keyPressed(int key){
             nameImg = "OF_randCircularPattern_"+ofToString(_countImg)+".png";
             f.open(nameImg);
         }
-        ofSaveImage(p,nameImg);
+        //  ofSaveImage(p,nameImg);
+        img.save(nameImg);
         //_countImg ++;
     }
 }
