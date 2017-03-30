@@ -152,76 +152,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     _fboDynamic.draw(0,0);
-    // ofNoFill();
-    // ofDrawCircle(_center,100);
-    /*  ofBackground(0);
-    ofSetColor(255);
-    float x = _center.x;
-    float y = _center.y;
-    float radius = 100;
-    int resolution = 100;
-    ofEnableAntiAliasing();
-    glLineWidth(15);//_lineWidth);
-    //glPointSize(10);
-    // glEnable(GL_POINT_SMOOTH);
-    glBegin(GL_LINE_LOOP);//POINT);
-    glEnable( GL_LINE_SMOOTH );
-    glHint( GL_LINE_SMOOTH_HINT, GL_NICEST );
-//    glBegin(GL_POINTS);
-//    glEnable(GL_POINT_SMOOTH);
-    for(int ii = 0; ii < resolution; ii++)
-    {
-        float theta = 2.0f * PI * float(ii) / float(resolution);//get the current angle
 
-        float xx = x +radius * cosf(theta);//calculate the x component
-        float yy = y + radius * sinf(theta);//calculate the y component
-
-        glVertex2f((int)xx, (int)yy);//output vertex
-
-    }
-
-
-    glEnd();
-    /*   ofBackground(0);
-    glEnable(GL_DEPTH_TEST);
-
-        //Tells OpenGL not to draw backfaces
-        //Backfaces are defined by vertex drawing order
-        //By default couter-clockwise drawing order specifies front faces
-        //Note: The circle is drawn counter-clockwise
-        //Note: It is not necessary to enable this for a simple 2D circle
-        //but is good practice
-        glCullFace(GL_BACK);
-        glEnable(GL_CULL_FACE);
-
-    int M_IN_DEGREE = 370;
-    int N_IN_DEGREE = 100;
-    int nCount = 1;
-    float stVertexArray[2*360];
-    float radius = 100;
-    stVertexArray[0] = _center.x;
-    stVertexArray[1] = _center.y;
-    int resolution = 50;
-   // for( int nR =N_IN_DEGREE; nR < M_IN_DEGREE; nR++ )
-    for(int ii = 0; ii < resolution; ii++)
-    {
-        float theta = 2.0f * PI * float(ii) / float(resolution);//get the current angle
-//    {
-        float fX = sin(theta) ;
-        float fY = cos(theta );
-        stVertexArray[nCount*2] = radius * fX + _center.x;
-        stVertexArray[nCount*2 + 1] = radius * fY+ _center.y;
-        nCount++;
-    }
-   // ofSetColor(255);
-    glEnableClientState( GL_VERTEX_ARRAY );
-    glVertexPointer( 2, GL_FLOAT, 0, stVertexArray );
-    glDrawArrays( GL_LINE_LOOP, 0, nCount );
-*/
-    //ofBackground(205, 175, 149);
-
-    //drawDynamicImage();
-    // _fboDynamic.draw(0,0);
 }
 //--------------------------------------------------------------
 
